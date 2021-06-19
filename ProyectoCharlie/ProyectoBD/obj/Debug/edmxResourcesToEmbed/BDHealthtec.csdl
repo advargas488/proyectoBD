@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PROYECTOBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Administrador">
+    <Key>
+      <PropertyRef Name="Nombre_Usuario" />
+    </Key>
+    <Property Name="Nombre_Usuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contraseña" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Clínica">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Dirección" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Teléfono" Type="Int32" />
+    <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sitio_Web" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Horario" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Provincia" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="Cantón" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Distrito" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Médico" Relationship="Self.Clínica_Médico" FromRole="Clínica" ToRole="Médico" />
+    <NavigationProperty Name="Pacientes" Relationship="Self.Clínica_Paciente" FromRole="Clínica" ToRole="Paciente" />
+  </EntityType>
+  <EntityType Name="Médico">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cédula" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido1" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido2" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Especialidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Citas" Relationship="Self.FK__Citas__ID_Médico__36B12243" FromRole="Médico" ToRole="Citas" />
+    <NavigationProperty Name="Clínica" Relationship="Self.Clínica_Médico" FromRole="Médico" ToRole="Clínica" />
+  </EntityType>
+  <EntityType Name="Paciente">
+    <Key>
+      <PropertyRef Name="Cédula" />
+    </Key>
+    <Property Name="Cédula" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido1" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido2" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Teléfono" Type="Int32" />
+    <Property Name="Provincia" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cantón" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Distrito" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha_Nac" Type="DateTime" Precision="0" />
+    <Property Name="Tipo_Sangre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Citas" Relationship="Self.FK__Citas__Cédula_Pa__37A5467C" FromRole="Paciente" ToRole="Citas" />
+    <NavigationProperty Name="Clínica" Relationship="Self.Clínica_Paciente" FromRole="Paciente" ToRole="Clínica" />
+  </EntityType>
+  <EntityType Name="Cita">
+    <Key>
+      <PropertyRef Name="ID_Médico" />
+      <PropertyRef Name="Cédula_Paciente" />
+      <PropertyRef Name="Hora_Cita" />
+    </Key>
+    <Property Name="ID_Médico" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cédula_Paciente" Type="Int32" Nullable="false" />
+    <Property Name="Hora_Cita" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Tipo_Servicio" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Diagnóstico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Tratamiento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Médico" Relationship="Self.FK__Citas__ID_Médico__36B12243" FromRole="Citas" ToRole="Médico" />
+    <NavigationProperty Name="Paciente" Relationship="Self.FK__Citas__Cédula_Pa__37A5467C" FromRole="Citas" ToRole="Paciente" />
+  </EntityType>
+  <Association Name="FK__Citas__ID_Médico__36B12243">
+    <End Role="Médico" Type="Self.Médico" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Citas" Type="Self.Cita" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Médico">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Citas">
+        <PropertyRef Name="ID_Médico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Citas__Cédula_Pa__37A5467C">
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Citas" Type="Self.Cita" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paciente">
+        <PropertyRef Name="Cédula" />
+      </Principal>
+      <Dependent Role="Citas">
+        <PropertyRef Name="Cédula_Paciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Clínica_Médico">
+    <End Role="Clínica" Type="Self.Clínica" Multiplicity="*" />
+    <End Role="Médico" Type="Self.Médico" Multiplicity="*" />
+  </Association>
+  <Association Name="Clínica_Paciente">
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+    <End Role="Clínica" Type="Self.Clínica" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="PROYECTOBDEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Administradors" EntityType="Self.Administrador" />
+    <EntitySet Name="Clínica" EntityType="Self.Clínica" />
+    <EntitySet Name="Médico" EntityType="Self.Médico" />
+    <EntitySet Name="Pacientes" EntityType="Self.Paciente" />
+    <EntitySet Name="Citas" EntityType="Self.Cita" />
+    <AssociationSet Name="FK__Citas__ID_Médico__36B12243" Association="Self.FK__Citas__ID_Médico__36B12243">
+      <End Role="Médico" EntitySet="Médico" />
+      <End Role="Citas" EntitySet="Citas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Citas__Cédula_Pa__37A5467C" Association="Self.FK__Citas__Cédula_Pa__37A5467C">
+      <End Role="Paciente" EntitySet="Pacientes" />
+      <End Role="Citas" EntitySet="Citas" />
+    </AssociationSet>
+    <AssociationSet Name="Clínica_Médico" Association="Self.Clínica_Médico">
+      <End Role="Clínica" EntitySet="Clínica" />
+      <End Role="Médico" EntitySet="Médico" />
+    </AssociationSet>
+    <AssociationSet Name="Clínica_Paciente" Association="Self.Clínica_Paciente">
+      <End Role="Paciente" EntitySet="Pacientes" />
+      <End Role="Clínica" EntitySet="Clínica" />
+    </AssociationSet>
+    <FunctionImport Name="Borrar_Admin">
+      <Parameter Name="Nombre_Usuario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Borrar_Clínica">
+      <Parameter Name="ID_Clínica" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Borrar_Médico">
+      <Parameter Name="ID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Borrar_Paciente">
+      <Parameter Name="Cédula" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Editar_Admin">
+      <Parameter Name="Nombre_Usuario" Mode="In" Type="String" />
+      <Parameter Name="Nombre_Usuario_Nuevo" Mode="In" Type="String" />
+      <Parameter Name="Contraseña" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Editar_Clínica">
+      <Parameter Name="ID" Mode="In" Type="String" />
+      <Parameter Name="ID_Nueva" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Dirección" Mode="In" Type="String" />
+      <Parameter Name="Teléfono" Mode="In" Type="Int32" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="Sitio_Web" Mode="In" Type="String" />
+      <Parameter Name="Horario" Mode="In" Type="String" />
+      <Parameter Name="Provincia" Mode="In" Type="String" />
+      <Parameter Name="Cantón" Mode="In" Type="String" />
+      <Parameter Name="Distrito" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Editar_Médico">
+      <Parameter Name="ID" Mode="In" Type="String" />
+      <Parameter Name="ID_Nuevo" Mode="In" Type="String" />
+      <Parameter Name="Cédula" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido1" Mode="In" Type="String" />
+      <Parameter Name="Apellido2" Mode="In" Type="String" />
+      <Parameter Name="Especialidad" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Editar_Paciente">
+      <Parameter Name="Cédula" Mode="In" Type="Int32" />
+      <Parameter Name="Cédula_Nueva" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido1" Mode="In" Type="String" />
+      <Parameter Name="Apellido2" Mode="In" Type="String" />
+      <Parameter Name="Teléfono" Mode="In" Type="Int32" />
+      <Parameter Name="Provincia" Mode="In" Type="String" />
+      <Parameter Name="Cantón" Mode="In" Type="String" />
+      <Parameter Name="Distrito" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="Fecha_Nac" Mode="In" Type="DateTime" />
+      <Parameter Name="Tipo_Sangre" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Insertar_Admin">
+      <Parameter Name="Nombre_Usuario" Mode="In" Type="String" />
+      <Parameter Name="Contraseña" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Insertar_Cita">
+      <Parameter Name="ID_Médico" Mode="In" Type="String" />
+      <Parameter Name="Cédula_Paciente" Mode="In" Type="Int32" />
+      <Parameter Name="Hora_Cita" Mode="In" Type="DateTime" />
+      <Parameter Name="Tipo_Servicio" Mode="In" Type="String" />
+      <Parameter Name="Diagnóstico" Mode="In" Type="String" />
+      <Parameter Name="Tratamiento" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Insertar_Clínica">
+      <Parameter Name="ID" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Dirección" Mode="In" Type="String" />
+      <Parameter Name="Teléfono" Mode="In" Type="Int32" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="Sitio_Web" Mode="In" Type="String" />
+      <Parameter Name="Horario" Mode="In" Type="String" />
+      <Parameter Name="Provincia" Mode="In" Type="String" />
+      <Parameter Name="Cantón" Mode="In" Type="String" />
+      <Parameter Name="Distrito" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Insertar_Clínica_Médico">
+      <Parameter Name="ID_Clínica" Mode="In" Type="String" />
+      <Parameter Name="ID_Médico" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Insertar_Clínica_Paciente">
+      <Parameter Name="ID_Clínica" Mode="In" Type="String" />
+      <Parameter Name="Cédula_Paciente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Insertar_Médico">
+      <Parameter Name="ID" Mode="In" Type="String" />
+      <Parameter Name="Cédula" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido1" Mode="In" Type="String" />
+      <Parameter Name="Apellido2" Mode="In" Type="String" />
+      <Parameter Name="Especialidad" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Insertar_Paciente">
+      <Parameter Name="Cédula" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido1" Mode="In" Type="String" />
+      <Parameter Name="Apellido2" Mode="In" Type="String" />
+      <Parameter Name="Teléfono" Mode="In" Type="Int32" />
+      <Parameter Name="Provincia" Mode="In" Type="String" />
+      <Parameter Name="Cantón" Mode="In" Type="String" />
+      <Parameter Name="Distrito" Mode="In" Type="String" />
+      <Parameter Name="Correo" Mode="In" Type="String" />
+      <Parameter Name="Fecha_Nac" Mode="In" Type="DateTime" />
+      <Parameter Name="Tipo_Sangre" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Select_Admin" ReturnType="Collection(PROYECTOBDModel.Select_Admin_Result)">
+      <Parameter Name="Nombre_Usuario" Mode="In" Type="String" />
+      <Parameter Name="Contraseña" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Select_General_Clínica" ReturnType="Collection(PROYECTOBDModel.Select_General_Clínica_Result)" />
+    <FunctionImport Name="Select_General_Clínica_2" ReturnType="Collection(PROYECTOBDModel.Select_General_Clínica_2_Result)">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Select_General_Médico" ReturnType="Collection(PROYECTOBDModel.Select_General_Médico_Result)" />
+    <FunctionImport Name="Select_General_Médico_2" ReturnType="Collection(PROYECTOBDModel.Select_General_Médico_2_Result)">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido1" Mode="In" Type="String" />
+      <Parameter Name="Apellido2" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Select_General_Paciente" ReturnType="Collection(PROYECTOBDModel.Select_General_Paciente_Result)" />
+    <FunctionImport Name="Select_General_Paciente_2" ReturnType="Collection(PROYECTOBDModel.Select_General_Paciente_2_Result)">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido1" Mode="In" Type="String" />
+      <Parameter Name="Apellido2" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Select_Individual_Clínica" ReturnType="Collection(PROYECTOBDModel.Select_Individual_Clínica_Result)">
+      <Parameter Name="ID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Select_Individual_Médico" ReturnType="Collection(PROYECTOBDModel.Select_Individual_Médico_Result)">
+      <Parameter Name="ID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Select_Individual_Paciente" ReturnType="Collection(PROYECTOBDModel.Select_Individual_Paciente_Result)">
+      <Parameter Name="Cédula" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="Select_Admin_Result">
+    <Property Type="String" Name="Nombre_Usuario" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="Select_General_Clínica_Result">
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Dirección" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="Teléfono" Nullable="true" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Sitio_Web" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Horario" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Provincia" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="Cantón" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Distrito" Nullable="true" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="Select_General_Clínica_2_Result">
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Dirección" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="Teléfono" Nullable="true" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Sitio_Web" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Horario" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Provincia" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="Cantón" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Distrito" Nullable="true" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="Select_General_Médico_Result">
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="Cédula" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Apellido1" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Apellido2" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Especialidad" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Estado" Nullable="false" MaxLength="9" />
+  </ComplexType>
+  <ComplexType Name="Select_General_Médico_2_Result">
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="Cédula" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Apellido1" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Apellido2" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Especialidad" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Estado" Nullable="false" MaxLength="9" />
+  </ComplexType>
+  <ComplexType Name="Select_General_Paciente_Result">
+    <Property Type="Int32" Name="Cédula" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Apellido1" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Apellido2" Nullable="false" MaxLength="40" />
+    <Property Type="Int32" Name="Teléfono" Nullable="true" />
+    <Property Type="String" Name="Provincia" Nullable="false" MaxLength="11" />
+    <Property Type="String" Name="Cantón" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Distrito" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Fecha_Nac" Nullable="true" />
+    <Property Type="String" Name="Tipo_Sangre" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Estado" Nullable="false" MaxLength="9" />
+  </ComplexType>
+  <ComplexType Name="Select_General_Paciente_2_Result">
+    <Property Type="Int32" Name="Cédula" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Apellido1" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Apellido2" Nullable="false" MaxLength="40" />
+    <Property Type="Int32" Name="Teléfono" Nullable="true" />
+    <Property Type="String" Name="Provincia" Nullable="false" MaxLength="11" />
+    <Property Type="String" Name="Cantón" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Distrito" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Fecha_Nac" Nullable="true" />
+    <Property Type="String" Name="Tipo_Sangre" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Estado" Nullable="false" MaxLength="9" />
+  </ComplexType>
+  <ComplexType Name="Select_Individual_Clínica_Result">
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Dirección" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="Teléfono" Nullable="true" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Sitio_Web" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Horario" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Provincia" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="Cantón" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Distrito" Nullable="true" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="Select_Individual_Médico_Result">
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="Cédula" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Apellido1" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Apellido2" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Especialidad" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Estado" Nullable="false" MaxLength="9" />
+  </ComplexType>
+  <ComplexType Name="Select_Individual_Paciente_Result">
+    <Property Type="Int32" Name="Cédula" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Apellido1" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Apellido2" Nullable="false" MaxLength="40" />
+    <Property Type="Int32" Name="Teléfono" Nullable="true" />
+    <Property Type="String" Name="Provincia" Nullable="false" MaxLength="11" />
+    <Property Type="String" Name="Cantón" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Distrito" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Fecha_Nac" Nullable="true" />
+    <Property Type="String" Name="Tipo_Sangre" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Estado" Nullable="false" MaxLength="9" />
+  </ComplexType>
+</Schema>

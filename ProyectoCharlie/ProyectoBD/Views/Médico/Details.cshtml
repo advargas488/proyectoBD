@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ProyectoBD.Select_Individual_Médico_Result>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Médico</h4>
+    <hr />
+    @foreach (var item in Model)
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Cédula)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelItem => item.Cédula)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Apellido1)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelItem => item.Apellido1)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Apellido2)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelItem => item.Apellido2)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Especialidad)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelItem => item.Especialidad)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Estado)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </dd>
+
+        </dl>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    }
+
+</div>

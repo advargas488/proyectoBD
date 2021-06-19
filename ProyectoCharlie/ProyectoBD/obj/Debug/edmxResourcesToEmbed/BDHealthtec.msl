@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PROYECTOBDModelStoreContainer" CdmEntityContainer="PROYECTOBDEntities">
+    <EntitySetMapping Name="Administradors">
+      <EntityTypeMapping TypeName="PROYECTOBDModel.Administrador">
+        <MappingFragment StoreEntitySet="Administrador">
+          <ScalarProperty Name="Nombre_Usuario" ColumnName="Nombre_Usuario" />
+          <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clínica">
+      <EntityTypeMapping TypeName="PROYECTOBDModel.Clínica">
+        <MappingFragment StoreEntitySet="Clínica">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+          <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Sitio_Web" ColumnName="Sitio_Web" />
+          <ScalarProperty Name="Horario" ColumnName="Horario" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="Cantón" ColumnName="Cantón" />
+          <ScalarProperty Name="Distrito" ColumnName="Distrito" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Médico">
+      <EntityTypeMapping TypeName="PROYECTOBDModel.Médico">
+        <MappingFragment StoreEntitySet="Médico">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Cédula" ColumnName="Cédula" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+          <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+          <ScalarProperty Name="Especialidad" ColumnName="Especialidad" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pacientes">
+      <EntityTypeMapping TypeName="PROYECTOBDModel.Paciente">
+        <MappingFragment StoreEntitySet="Paciente">
+          <ScalarProperty Name="Cédula" ColumnName="Cédula" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+          <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+          <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="Cantón" ColumnName="Cantón" />
+          <ScalarProperty Name="Distrito" ColumnName="Distrito" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Fecha_Nac" ColumnName="Fecha_Nac" />
+          <ScalarProperty Name="Tipo_Sangre" ColumnName="Tipo_Sangre" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Citas">
+      <EntityTypeMapping TypeName="PROYECTOBDModel.Cita">
+        <MappingFragment StoreEntitySet="Citas">
+          <ScalarProperty Name="ID_Médico" ColumnName="ID_Médico" />
+          <ScalarProperty Name="Cédula_Paciente" ColumnName="Cédula_Paciente" />
+          <ScalarProperty Name="Hora_Cita" ColumnName="Hora_Cita" />
+          <ScalarProperty Name="Tipo_Servicio" ColumnName="Tipo_Servicio" />
+          <ScalarProperty Name="Diagnóstico" ColumnName="Diagnóstico" />
+          <ScalarProperty Name="Tratamiento" ColumnName="Tratamiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Clínica_Médico" TypeName="PROYECTOBDModel.Clínica_Médico" StoreEntitySet="Clínica_Médico">
+      <EndProperty Name="Clínica">
+        <ScalarProperty Name="ID" ColumnName="ID_Clínica" />
+      </EndProperty>
+      <EndProperty Name="Médico">
+        <ScalarProperty Name="ID" ColumnName="ID_Médico" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Clínica_Paciente" TypeName="PROYECTOBDModel.Clínica_Paciente" StoreEntitySet="Clínica_Paciente">
+      <EndProperty Name="Paciente">
+        <ScalarProperty Name="Cédula" ColumnName="Cédula_Paciente" />
+      </EndProperty>
+      <EndProperty Name="Clínica">
+        <ScalarProperty Name="ID" ColumnName="ID_Clínica" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="Borrar_Admin" FunctionName="PROYECTOBDModel.Store.Borrar_Admin" />
+    <FunctionImportMapping FunctionImportName="Borrar_Clínica" FunctionName="PROYECTOBDModel.Store.Borrar_Clínica" />
+    <FunctionImportMapping FunctionImportName="Borrar_Médico" FunctionName="PROYECTOBDModel.Store.Borrar_Médico" />
+    <FunctionImportMapping FunctionImportName="Borrar_Paciente" FunctionName="PROYECTOBDModel.Store.Borrar_Paciente" />
+    <FunctionImportMapping FunctionImportName="Editar_Admin" FunctionName="PROYECTOBDModel.Store.Editar_Admin" />
+    <FunctionImportMapping FunctionImportName="Editar_Clínica" FunctionName="PROYECTOBDModel.Store.Editar_Clínica" />
+    <FunctionImportMapping FunctionImportName="Editar_Médico" FunctionName="PROYECTOBDModel.Store.Editar_Médico" />
+    <FunctionImportMapping FunctionImportName="Editar_Paciente" FunctionName="PROYECTOBDModel.Store.Editar_Paciente" />
+    <FunctionImportMapping FunctionImportName="Insertar_Admin" FunctionName="PROYECTOBDModel.Store.Insertar_Admin" />
+    <FunctionImportMapping FunctionImportName="Insertar_Cita" FunctionName="PROYECTOBDModel.Store.Insertar_Cita" />
+    <FunctionImportMapping FunctionImportName="Insertar_Clínica" FunctionName="PROYECTOBDModel.Store.Insertar_Clínica" />
+    <FunctionImportMapping FunctionImportName="Insertar_Clínica_Médico" FunctionName="PROYECTOBDModel.Store.Insertar_Clínica_Médico" />
+    <FunctionImportMapping FunctionImportName="Insertar_Clínica_Paciente" FunctionName="PROYECTOBDModel.Store.Insertar_Clínica_Paciente" />
+    <FunctionImportMapping FunctionImportName="Insertar_Médico" FunctionName="PROYECTOBDModel.Store.Insertar_Médico" />
+    <FunctionImportMapping FunctionImportName="Insertar_Paciente" FunctionName="PROYECTOBDModel.Store.Insertar_Paciente" />
+    <FunctionImportMapping FunctionImportName="Select_Admin" FunctionName="PROYECTOBDModel.Store.Select_Admin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PROYECTOBDModel.Select_Admin_Result">
+          <ScalarProperty Name="Nombre_Usuario" ColumnName="Nombre_Usuario" />
+          <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Select_General_Clínica" FunctionName="PROYECTOBDModel.Store.Select_General_Clínica">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PROYECTOBDModel.Select_General_Clínica_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+          <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Sitio_Web" ColumnName="Sitio_Web" />
+          <ScalarProperty Name="Horario" ColumnName="Horario" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="Cantón" ColumnName="Cantón" />
+          <ScalarProperty Name="Distrito" ColumnName="Distrito" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Select_General_Clínica_2" FunctionName="PROYECTOBDModel.Store.Select_General_Clínica_2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PROYECTOBDModel.Select_General_Clínica_2_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+          <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Sitio_Web" ColumnName="Sitio_Web" />
+          <ScalarProperty Name="Horario" ColumnName="Horario" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="Cantón" ColumnName="Cantón" />
+          <ScalarProperty Name="Distrito" ColumnName="Distrito" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Select_General_Médico" FunctionName="PROYECTOBDModel.Store.Select_General_Médico">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PROYECTOBDModel.Select_General_Médico_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Cédula" ColumnName="Cédula" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+          <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+          <ScalarProperty Name="Especialidad" ColumnName="Especialidad" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Select_General_Médico_2" FunctionName="PROYECTOBDModel.Store.Select_General_Médico_2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PROYECTOBDModel.Select_General_Médico_2_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Cédula" ColumnName="Cédula" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+          <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+          <ScalarProperty Name="Especialidad" ColumnName="Especialidad" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Select_General_Paciente" FunctionName="PROYECTOBDModel.Store.Select_General_Paciente">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PROYECTOBDModel.Select_General_Paciente_Result">
+          <ScalarProperty Name="Cédula" ColumnName="Cédula" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+          <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+          <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="Cantón" ColumnName="Cantón" />
+          <ScalarProperty Name="Distrito" ColumnName="Distrito" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Fecha_Nac" ColumnName="Fecha_Nac" />
+          <ScalarProperty Name="Tipo_Sangre" ColumnName="Tipo_Sangre" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Select_General_Paciente_2" FunctionName="PROYECTOBDModel.Store.Select_General_Paciente_2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PROYECTOBDModel.Select_General_Paciente_2_Result">
+          <ScalarProperty Name="Cédula" ColumnName="Cédula" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+          <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+          <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="Cantón" ColumnName="Cantón" />
+          <ScalarProperty Name="Distrito" ColumnName="Distrito" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Fecha_Nac" ColumnName="Fecha_Nac" />
+          <ScalarProperty Name="Tipo_Sangre" ColumnName="Tipo_Sangre" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Select_Individual_Clínica" FunctionName="PROYECTOBDModel.Store.Select_Individual_Clínica">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PROYECTOBDModel.Select_Individual_Clínica_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+          <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Sitio_Web" ColumnName="Sitio_Web" />
+          <ScalarProperty Name="Horario" ColumnName="Horario" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="Cantón" ColumnName="Cantón" />
+          <ScalarProperty Name="Distrito" ColumnName="Distrito" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Select_Individual_Médico" FunctionName="PROYECTOBDModel.Store.Select_Individual_Médico">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PROYECTOBDModel.Select_Individual_Médico_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Cédula" ColumnName="Cédula" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+          <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+          <ScalarProperty Name="Especialidad" ColumnName="Especialidad" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Select_Individual_Paciente" FunctionName="PROYECTOBDModel.Store.Select_Individual_Paciente">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PROYECTOBDModel.Select_Individual_Paciente_Result">
+          <ScalarProperty Name="Cédula" ColumnName="Cédula" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+          <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+          <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="Cantón" ColumnName="Cantón" />
+          <ScalarProperty Name="Distrito" ColumnName="Distrito" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Fecha_Nac" ColumnName="Fecha_Nac" />
+          <ScalarProperty Name="Tipo_Sangre" ColumnName="Tipo_Sangre" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

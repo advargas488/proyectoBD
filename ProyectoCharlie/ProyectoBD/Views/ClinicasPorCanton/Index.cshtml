@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ProyectoBD.ClinicasPorCanton_Result>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Cantidad de clinicas por canton</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantón)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Numero_de_clinicas)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantón)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero_de_clinicas)
+            </td>
+        </tr>
+    }
+
+</table>

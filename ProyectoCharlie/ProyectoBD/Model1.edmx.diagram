@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c7829dd49db04d929d881155a5063f31" Name="Diagram1">
+        <EntityTypeShape EntityType="ProyectoBDModel.Administrador" Width="1.5" PointX="2.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBDModel.Cita" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBDModel.Clínica" Width="1.5" PointX="3.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBDModel.Clínica_Médico" Width="1.5" PointX="6" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBDModel.Clínica_Paciente" Width="1.5" PointX="6" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBDModel.Médico" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBDModel.Paciente" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoBDModel.Paciente_Medico" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <AssociationConnector Association="ProyectoBDModel.FK__Citas__Cédula_Pa__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoBDModel.FK__Citas__ID_Médico__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoBDModel.FK__Clínica_M__ID_Cl__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoBDModel.FK__Clínica_P__ID_Cl__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoBDModel.FK__Clínica_M__ID_Mé__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoBDModel.FK__Clínica_P__Cédul__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoBDModel.FK_Paciente_Medico_Paciente" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

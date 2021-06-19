@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ProyectoBD.Top5Docs_Result>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Top 5 medicos con mas casos atendidos</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Medico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pacientes_Atendidos)
+        </th>
+        
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pacientes_Atendidos)
+            </td>
+           
+        </tr>
+    }
+
+</table>

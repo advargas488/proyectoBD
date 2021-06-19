@@ -1,0 +1,50 @@
+﻿@model ProyectoBD.Administrador
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+@{
+    if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        <div class="alert alert-warning">@ViewBag.Message</div>
+    }
+}
+
+
+@using (Html.BeginForm())
+{
+
+    <div class="form-horizontal">
+        <h4 style="margin-top: 10px">Inicio Sesion</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Nombre_Usuario)
+
+        <div class="form-group">
+
+            <div class="col-md-10">
+                <label>Ingrese el usuario</label>
+                <input type="text" name="user" value="" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <label>Ingrese la contraseña</label>
+                <input type="text" name="password" value="" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Iniciar sesion" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

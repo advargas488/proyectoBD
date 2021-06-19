@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Estadisticas";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Estadisticas</h2>
+
+<ul>
+    <li>@Html.ActionLink("Top provincias con mas casos", "Index", "TopProvincias")</li>
+    <li>@Html.ActionLink("Recuperados por canton", "Index", "SanosCanton")</li>
+    <li>@Html.ActionLink("Top apellidos con mas casos", "Index", "TopApellidos")</li>
+    <li>@Html.ActionLink("Top apellidos con mas casos por canton", "Index", "TopApellidosCanton")</li>
+    <li>@Html.ActionLink("Top de especialidades que han atendido casos", "Index", "TopEspecialidad")</li>
+    <li>@Html.ActionLink("Cantidad de clinicas por canton", "Index", "ClinicasPorCanton")</li>
+    <li>@Html.ActionLink("Cantidad de medicos por especialidad y estado", "Index", "Medico_Filtro")</li>
+    <li>@Html.ActionLink("Top 5 medicos con mas casos atendidos", "Index", "To5Docs")</li>
+</ul>
