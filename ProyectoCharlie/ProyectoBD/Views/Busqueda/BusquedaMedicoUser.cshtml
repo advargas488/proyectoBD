@@ -1,7 +1,7 @@
-﻿@model IEnumerable<ProyectoBD.Select_General_Paciente_2_Result>
+﻿@model IEnumerable<ProyectoBD.Select_Medico_Paciente_Result>
 @{
-    ViewBag.Title = "Busqueda Paciente";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Busqueda Medico";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
 @{
@@ -11,7 +11,7 @@
     }
 }
 
-<h2>Busqueda Paciente</h2>
+<h2>Busqueda Medico</h2>
 @using (Html.BeginForm())
 {
     <div class="form-horizontal">
@@ -45,28 +45,7 @@
             @Html.DisplayNameFor(model => model.Apellido2)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Teléfono)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tipo_Sangre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Provincia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Provincia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cantón)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Distrito)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Correo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha_Nac)
+            @Html.DisplayNameFor(model => model.Especialidad)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Estado)
@@ -90,29 +69,12 @@
                 @Html.DisplayFor(modelItem => item.Apellido2)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Teléfono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tipo_Sangre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Provincia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cantón)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Distrito)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Correo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha_Nac)
+                @Html.DisplayFor(modelItem => item.Especialidad)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
+
         </tr>
     }
 </table>
@@ -120,5 +82,3 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-
-

@@ -38,6 +38,34 @@ namespace ProyectoBD.Controllers
             return View(db.Select_General_Paciente_2(name).ToList());
         }
 
+        public ActionResult BusquedaMedicoUser(string name)
+        {
+            if (name == "")
+            {
+                return View();
+            }
+            else if (db.Select_Medico_Paciente(name) == null)
+            {
+                ViewBag.Message = "Nombre no encontrado";
+                return View();
+            }
+            return View(db.Select_Medico_Paciente(name).ToList());
+        }
+
+        public ActionResult BuscarPacienteUser(string name)
+        {
+            if (name == "")
+            {
+                return View();
+            }
+            else if (db.Select_General_Paciente_2(name) == null)
+            {
+                ViewBag.Message = "Nombre no encontrado";
+                return View();
+            }
+            return View(db.Select_General_Paciente_2(name).ToList());
+        }
+
         public ActionResult Estadisticas()
         {
             return View();

@@ -362,6 +362,8 @@
     <Content Include="Views\ClínicaInv\Index.cshtml" />
     <Content Include="Views\Busqueda\Index.cshtml" />
     <Content Include="Views\Busqueda\Busqueda2.cshtml" />
+    <Content Include="Views\Busqueda\BuscarPacienteUser.cshtml" />
+    <Content Include="Views\Busqueda\BusquedaMedicoUser.cshtml" />
     <None Include="Views\Busqueda\Estadisticas.cshtml" />
     <Content Include="Views\ClinicasPorCanton\Index.cshtml" />
     <Content Include="Views\CasosPorLugar\Index.cshtml" />
